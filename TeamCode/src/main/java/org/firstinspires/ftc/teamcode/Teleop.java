@@ -96,3 +96,5 @@ public class Teleop extends OpMode
         //robot.scoringArmMotor.setPower(0);
     }
 }
+
+//trial
