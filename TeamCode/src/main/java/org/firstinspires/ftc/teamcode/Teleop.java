@@ -19,7 +19,7 @@ public class Teleop extends OpMode
         robot.robotHardwareMapInit(hardwareMap);
         robot.leftBackMotor..setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.runWithOutEncoders();
-        robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 
@@ -53,7 +53,7 @@ public class Teleop extends OpMode
         }
         */
 
-       if (gamepad2.right_stick_y == 0) {
+      /*if (gamepad2.right_stick_y == 0) {
             robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             if (gamepad2.x) {
                 robot.pulleyMotor.setTargetPosition(400);
@@ -66,7 +66,7 @@ public class Teleop extends OpMode
             robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             robot.pulleyMotor.setPower(gamepad2.right_stick_y);
 
-        }
+        } */
 
        /* if ((robot.bottomLimitSwitch.getState() == false) && (robot.topLimitSwitch.getState() == false) ) {
             if (gamepad2.a) {
