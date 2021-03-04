@@ -44,13 +44,14 @@ public class Teleop extends OpMode
         robot.intakeMotor.setPower(gamepad2.right_trigger);
         robot.intakeMotor.setPower(-gamepad2.left_trigger);
 
-        if (gamepad2.right_bumper) {
+      /*  if (gamepad2.right_bumper) {
             robot.outputServo.setPosition(0);
             robot.outputMotor.setPower(1);
         } else {
             robot.outputServo.setPosition(1);
             robot.outputMotor.setPower(gamepad2.left_stick_y);
         }
+        */
 
         if (gamepad2.right_stick_y == 0) {
             robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -67,7 +68,7 @@ public class Teleop extends OpMode
 
         }
 
-        if ((robot.bottomLimitSwitch.getState() == false) && (robot.topLimitSwitch.getState() == false) ) {
+       /* if ((robot.bottomLimitSwitch.getState() == false) && (robot.topLimitSwitch.getState() == false) ) {
             if (gamepad2.a) {
                 robot.cLiftServo.setPosition(0);
             } else if (gamepad2.b) {
@@ -80,9 +81,11 @@ public class Teleop extends OpMode
 
         } else robot.cLiftServo.setPosition(0.4);
 
+        */
+
         telemetry.addData("Left Back", robot.leftBackMotor.getCurrentPosition());
         telemetry.addData("Left Joystick", gamepad1.left_stick_y);
-        telemetry.addData("cLiftServo: ", robot.cLiftServo.getPosition());
+       // telemetry.addData("cLiftServo: ", robot.cLiftServo.getPosition());
         //telemetry.addData("Arm Position", robot.scoringArmMotor.getCurrentPosition());24000
         telemetry.update();
 

@@ -20,12 +20,12 @@ public class Definitions
     DcMotor rightFrontMotor = null;
     DcMotor rightBackMotor = null;
     DcMotor intakeMotor = null;
-    DcMotor outputMotor = null;
-    Servo outputServo = null;
+    //DcMotor outputMotor = null;
+    //Servo outputServo = null;
     DcMotor pulleyMotor = null;
-    Servo cLiftServo = null;
-    DigitalChannel bottomLimitSwitch = null;
-    DigitalChannel topLimitSwitch = null;
+    //Servo cLiftServo = null;
+    //DigitalChannel bottomLimitSwitch = null;
+    //DigitalChannel topLimitSwitch = null;
 
     public void robotHardwareMapInit(HardwareMap Map)
     {
@@ -35,16 +35,16 @@ public class Definitions
         rightBackMotor = Map.dcMotor.get("rightBackMotor");
         rightFrontMotor = Map.dcMotor.get("rightFrontMotor");
         intakeMotor = Map.dcMotor.get("intakeMotor");
-        outputMotor = Map.dcMotor.get("outputMotor");
-        outputServo = Map.servo.get("outputServo");
+       // outputMotor = Map.dcMotor.get("outputMotor");
+       //  outputServo = Map.servo.get("outputServo");
         pulleyMotor = Map.dcMotor.get("pulleyMotor");
-        cLiftServo = Map.servo.get("cLiftServo");
-        bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
-        topLimitSwitch = Map.digitalChannel.get("topLimitSwitch");
+       // cLiftServo = Map.servo.get("cLiftServo");
+       // bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
+       // topLimitSwitch = Map.digitalChannel.get("topLimitSwitch");
 
     }
 
-    void servoInit()
+  /*  void servoInit()
     {
         outputServo.setPosition(0);
         outputServo.setDirection(Servo.Direction.FORWARD);
@@ -52,7 +52,7 @@ public class Definitions
         cLiftServo.setPosition(0);
         cLiftServo.setDirection(Servo.Direction.FORWARD);
 
-    }
+    } */
 
     void runWithOutEncoders()
     {
@@ -61,7 +61,7 @@ public class Definitions
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
 
