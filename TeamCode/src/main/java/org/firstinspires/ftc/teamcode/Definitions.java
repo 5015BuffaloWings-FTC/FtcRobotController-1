@@ -20,9 +20,9 @@ public class Definitions
     DcMotor rightFrontMotor = null;
     DcMotor rightBackMotor = null;
     DcMotor intakeMotor = null;
-    //DcMotor outputMotor = null;
-    //Servo outputServo = null;
-    DcMotor pulleyMotor = null;
+    DcMotor outputMotor = null;
+    Servo outputServo = null;
+    // DcMotor pulleyMotor = null;
     //Servo cLiftServo = null;
     //DigitalChannel bottomLimitSwitch = null;
     //DigitalChannel topLimitSwitch = null;
@@ -35,8 +35,8 @@ public class Definitions
         rightBackMotor = Map.dcMotor.get("rightBackMotor");
         rightFrontMotor = Map.dcMotor.get("rightFrontMotor");
         intakeMotor = Map.dcMotor.get("intakeMotor");
-       // outputMotor = Map.dcMotor.get("outputMotor");
-       // outputServo = Map.servo.get("outputServo");
+        outputMotor = Map.dcMotor.get("outputMotor");
+        outputServo = Map.servo.get("outputServo");
        // pulleyMotor = Map.dcMotor.get("pulleyMotor");
        // cLiftServo = Map.servo.get("cLiftServo");
        // bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
@@ -44,15 +44,15 @@ public class Definitions
 
     }
 
-  /*  void servoInit()
+  void servoInit()
     {
         outputServo.setPosition(0);
         outputServo.setDirection(Servo.Direction.FORWARD);
 
-        cLiftServo.setPosition(0);
-        cLiftServo.setDirection(Servo.Direction.FORWARD);
+        //cLiftServo.setPosition(0);
+        //cLiftServo.setDirection(Servo.Direction.FORWARD);
 
-    } */
+    }
 
     void runWithOutEncoders()
     {
@@ -62,7 +62,7 @@ public class Definitions
         rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
 

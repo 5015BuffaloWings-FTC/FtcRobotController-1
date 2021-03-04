@@ -17,7 +17,7 @@ public class Teleop extends OpMode
     public void init()
     {
         robot.robotHardwareMapInit(hardwareMap);
-        robot.leftBackMotor..setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.leftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.runWithOutEncoders();
         //robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
