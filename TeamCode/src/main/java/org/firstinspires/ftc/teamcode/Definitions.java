@@ -61,6 +61,7 @@ public class Definitions
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
