@@ -38,6 +38,7 @@ public class TeleOpArm extends OpMode
 
         telemetry.addData("Left Back", robot.leftBackMotor.getCurrentPosition());
         telemetry.addData("Left Joystick", gamepad1.left_stick_y);
+        telemetry.addData("Output Servo", robot.outputServo.getPosition());
         //telemetry.addData("cLiftServo: ", robot.cLiftServo.getPosition());
         //telemetry.addData("Arm Position", robot.scoringArmMotor.getCurrentPosition());24000
         telemetry.update();
