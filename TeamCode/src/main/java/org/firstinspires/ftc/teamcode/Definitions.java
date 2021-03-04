@@ -22,7 +22,7 @@ public class Definitions
     DcMotor intakeMotor = null;
     //DcMotor outputMotor = null;
     //Servo outputServo = null;
-    //DcMotor pulleyMotor = null;
+    DcMotor pulleyMotor = null;
     //Servo cLiftServo = null;
     //DigitalChannel bottomLimitSwitch = null;
     //DigitalChannel topLimitSwitch = null;
@@ -37,7 +37,7 @@ public class Definitions
         intakeMotor = Map.dcMotor.get("intakeMotor");
        // outputMotor = Map.dcMotor.get("outputMotor");
        // outputServo = Map.servo.get("outputServo");
-       // pulleyMotor = Map.dcMotor.get("pulleyMotor");
+       pulleyMotor = Map.dcMotor.get("pulleyMotor");
        // cLiftServo = Map.servo.get("cLiftServo");
        // bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
        // topLimitSwitch = Map.digitalChannel.get("topLimitSwitch");
@@ -61,7 +61,7 @@ public class Definitions
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
@@ -72,7 +72,7 @@ public class Definitions
         leftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        // pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public int inchesToTicks(double inches)
