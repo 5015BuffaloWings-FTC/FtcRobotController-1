@@ -72,6 +72,7 @@ public class Definitions
         leftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public int inchesToTicks(double inches)
