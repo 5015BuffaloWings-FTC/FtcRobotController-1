@@ -41,8 +41,8 @@ public class Teleop extends OpMode
             robot.leftBackMotor.setPower(Range.clip((gamepad1.left_stick_y + (gamepad1.left_stick_x) - gamepad1.right_stick_x), -1, 1));
         }
 
-        robot.intakeMotor.setPower(gamepad2.right_trigger);
-        robot.intakeMotor.setPower(-gamepad2.left_trigger);
+        robot.intakeMotor.setPower(gamepad2.left_trigger);
+        robot.intakeMotor.setPower(-gamepad2.right_trigger);
 
       /*  if (gamepad2.right_bumper) {
             robot.outputServo.setPosition(0);
