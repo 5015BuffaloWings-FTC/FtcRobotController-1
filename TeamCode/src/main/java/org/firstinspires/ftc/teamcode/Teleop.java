@@ -65,9 +65,11 @@ public class Teleop extends OpMode
         } else {
             robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             robot.pulleyMotor.setPower(gamepad2.right_stick_y);
+       
+       } */
 
-        } */
-
+       robot.pulleyMotor.setPower(gamepad2.left_stick_y);
+       
        /* if ((robot.bottomLimitSwitch.getState() == false) && (robot.topLimitSwitch.getState() == false) ) {
             if (gamepad2.a) {
                 robot.cLiftServo.setPosition(0);
