@@ -97,9 +97,6 @@ public class Teleop extends OpMode
     public void stop()
     {
         robot.setPower(0);
-        //robot.leadScrewMotor.setPower(0);
-        //robot.scoringArmMotor.setPower(0);
+        
     }
 }
-
-//trial
