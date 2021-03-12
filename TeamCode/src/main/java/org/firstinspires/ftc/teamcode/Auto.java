@@ -27,13 +27,15 @@ public class Auto extends LinearOpMode {
 
     Definitions robot = new Definitions();
 
+    enum State { INIT, MOVE, STOP };
     @Override
     public void runOpMode() {
         robot.driveWithEncoders();
+        State state_s = null;
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        tememetry.clear();
+        telemetry.clear();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -41,18 +43,17 @@ public class Auto extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            // move to Definitions file and create algorithm to handle it
-            while(robot.leftFrontMotor.getCurrentPosition() < 500)
-            {
-                robot.leftBackMotor.setPower(1);
-                robot.leftFrontMotor.setPower(1);
-                robot.rightBackMotor.setPower(1);
-                robot.rightFrontMotor.setPower(1);
+            switch(state_s){
+                case INIT:
+                    break;
+                case MOVE:
+                    break;
+                case STOP:
+                    break;
+                default:
+                    break;
+
             }
-            robot.leftBackMotor.setPower(0);
-            robot.leftFrontMotor.setPower(0);
-            robot.rightBackMotor.setPower(0);
-            robot.rightFrontMotor.setPower(0);
 
             telemetry.addData("LeftFrontMotor Current Encoder Value: ", robot.leftFrontMotor.getCurrentPosition());
             telemetry.update();
