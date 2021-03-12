@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="TeleopArm")
-public class TeleOpArm extends OpMode
+public class TeleOpArm2 extends OpMode
 {
-    Definitions robot = new Definitions();
+    Definitions2 robot = new Definitions2();
     double slowMovement = 0.5; //Slow movement is used as a multiplier to change movement speed
     double armLowerLimit; //Used to set the lower limit of the scoring arm's range of motion
     double armHigherLimit; //Used to set the upper limit of the scoring arm's range of motion

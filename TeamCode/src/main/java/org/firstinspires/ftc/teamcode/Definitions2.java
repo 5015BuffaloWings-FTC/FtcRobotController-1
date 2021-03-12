@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Definitions
+public class Definitions2
 {
     public final int FORWARD = 0;
     public final int BACKWARD = 1;
@@ -51,7 +51,7 @@ public class Definitions
         pulleyMotor = Map.dcMotor.get("pulleyMotor");
         outputServo = Map.servo.get("outputServo");
         autoColor = Map.colorSensor.get("autoSensor");
-        autoDistance = Map.get(DistanceSensor.class, "autoSensor");s
+        autoDistance = Map.get(DistanceSensor.class, "autoSensor");
 
        // cLiftServo = Map.servo.get("cLiftServo");
        // bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
