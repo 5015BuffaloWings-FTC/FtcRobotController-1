@@ -55,7 +55,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public class Auto2 extends LinearOpMode {
 
-    Definitions robot = new Definitions();
+    Definitions2 robot = new Definitions2();
 
 
 
@@ -63,7 +63,7 @@ public class Auto2 extends LinearOpMode {
     public void runOpMode() {
         robot.robotHardwareMapInit(hardwareMap);
         robot.resetEncoders();
-       // robot.setStrafeLeft();
+        robot.setStrafeLeft();
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -77,26 +77,26 @@ public class Auto2 extends LinearOpMode {
 
         while(robot.rightFrontMotor.getCurrentPosition() < 6300 && opModeIsActive())
         {
-          //  robot.setDrivePower(.25);
+            robot.setDrivePower(.25);
 //            robot.leftBackMotor.setPower(-1);
 //            robot.leftFrontMotor.setPower(-1);
 //            robot.rightBackMotor.setPower(1);
 //            robot.rightFrontMotor.setPower(1);
         }
 
-      //  robot.setDrivePower(0);
+        robot.setDrivePower(0);
 
         sleep(1000);
 
         robot.resetEncoders();
-     //   robot.setStrafeRight();
+        robot.setStrafeRight();
 
         while(robot.rightFrontMotor.getCurrentPosition() < 1800 && opModeIsActive())
         {
-      //      robot.setDrivePower(.25);
+            robot.setDrivePower(.25);
         }
 
-      //  robot.setDrivePower(0);
+        robot.setDrivePower(0);
 
 //        robot.leftBackMotor.setPower(0);
 //        robot.leftFrontMotor.setPower(0);
