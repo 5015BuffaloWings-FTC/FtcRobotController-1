@@ -10,7 +10,7 @@ import java.util.Locale;
 @TeleOp(name="Teleop")
 public class Teleop2 extends OpMode
 {
-    Definitions2 robot = new Definitions2();
+    Definitions robot = new Definitions();
     double slowMovement = 0.5; //Slow movement is used as a multiplier to change movement speed
     double armLowerLimit; //Used to set the lower limit of the scoring arm's range of motion
     double armHigherLimit; //Used to set the upper limit of the scoring arm's range of motion

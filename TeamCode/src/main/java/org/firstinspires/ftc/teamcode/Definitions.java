@@ -60,6 +60,7 @@ public class Definitions
 
     void driveWithOutEncoders()
     {
+
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -70,13 +71,40 @@ public class Definitions
 
     }
 
+    void attachmentsWithOutEncoders()
+    {
+        if(pulleyMotor != null)
+        {
+            pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+
+        if(outputMotor != null)
+        {
+            outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+    }
+
     void driveWithEncoders()
     {
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        
+        //pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    void attachmentsWithEncoders() {
+        if (pulleyMotor != null) {
+            pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+        intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        if (outputMotor != null) {
+            outputMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
 
     void resetEncoders()
