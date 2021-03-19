@@ -2,9 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -19,6 +21,9 @@ public class Definitions
     DcMotor outputMotor = null;
     Servo outputServo = null;
     DcMotor pulleyMotor = null;
+    ColorSensor autoColor = null;
+    DistanceSensor autoDistance = null;
+
     //Servo cLiftServo = null;
     //DigitalChannel bottomLimitSwitch = null;
     //DigitalChannel topLimitSwitch = null;
@@ -34,6 +39,9 @@ public class Definitions
         outputMotor = Map.dcMotor.get("outputMotor");
         outputServo = Map.servo.get("outputServo");
         pulleyMotor = Map.dcMotor.get("pulleyMotor");
+        autoColor = Map.colorSensor.get("autoSensor");
+        autoDistance = Map.get(DistanceSensor.class, "autoSensor");
+
        // cLiftServo = Map.servo.get("cLiftServo");
        // bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
        // topLimitSwitch = Map.digitalChannel.get("topLimitSwitch");
@@ -50,15 +58,15 @@ public class Definitions
 
     }
 
-    void runWithOutEncoders()
+    void driveWithOutEncoders()
     {
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
 
