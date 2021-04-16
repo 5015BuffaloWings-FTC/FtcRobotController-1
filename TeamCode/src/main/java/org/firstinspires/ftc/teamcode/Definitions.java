@@ -1,12 +1,23 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.util.Log;
+
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
+
+import android.util.Log;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Definitions
 {
@@ -15,6 +26,10 @@ public class Definitions
     public final int STRAFELEFT = 2;
     public final int STRAFERIGHT = 3;
 
+    public final double WHEELSIZE = 2.99213;
+    public final int TICKSPERREV20 = 560;
+    public final double TICKCORRECTION = 32.0/34.0;
+
     DcMotor leftFrontMotor = null;
     DcMotor leftBackMotor = null;
     DcMotor rightFrontMotor = null;
@@ -22,8 +37,18 @@ public class Definitions
     DcMotor intakeMotor = null;
     DcMotor outputMotor = null;
     Servo outputServo = null;
-    // DcMotor pulleyMotor = null;
-    //Servo cLiftServo = null;
+    DcMotor pulleyMotor = null;
+    ColorSensor autoColor = null;
+    DistanceSensor autoDistance = null;
+    Servo linearServo = null;
+    TouchSensor magneticLimitSwitch = null;
+    Servo wobbleGoalR = null;
+    Servo wobbleGoalL = null;
+    Servo sensorArm = null;
+
+
+
+//    Servo cLiftServo = null;
     //DigitalChannel bottomLimitSwitch = null;
     //DigitalChannel topLimitSwitch = null;
 
@@ -36,33 +61,70 @@ public class Definitions
         rightFrontMotor = Map.dcMotor.get("rightFrontMotor");
         intakeMotor = Map.dcMotor.get("intakeMotor");
         outputMotor = Map.dcMotor.get("outputMotor");
+        pulleyMotor = Map.dcMotor.get("pulleyMotor");
         outputServo = Map.servo.get("outputServo");
-       // pulleyMotor = Map.dcMotor.get("pulleyMotor");
+        autoColor = Map.colorSensor.get("autoSensor");
+        autoDistance = Map.get(DistanceSensor.class, "autoSensor");
+        linearServo = Map.servo.get("linearServo");
+        magneticLimitSwitch = Map.touchSensor.get("magneticLimitSwitch");
+        wobbleGoalR = Map.servo.get("wobbleGoalR");
+        wobbleGoalL = Map.servo.get("wobbleGoalL");
+        sensorArm = Map.servo.get("sensorArm");
+
        // cLiftServo = Map.servo.get("cLiftServo");
        // bottomLimitSwitch = Map.digitalChannel.get("bottomLimitSwitch");
        // topLimitSwitch = Map.digitalChannel.get("topLimitSwitch");
-
     }
+
 
   void servoInit()
     {
-        outputServo.setPosition(0);
-        outputServo.setDirection(Servo.Direction.FORWARD);
+        if(outputServo != null)
+        {
+            outputServo.setPosition(1);
+            outputServo.setDirection(Servo.Direction.FORWARD);
+        }
+
+        if (linearServo != null){
+            linearServo.setPosition(.5);
+            linearServo.setDirection(Servo.Direction.FORWARD);
+        }
 
         //cLiftServo.setPosition(0);
         //cLiftServo.setDirection(Servo.Direction.FORWARD);
 
     }
 
-    void runWithOutEncoders()
+
+    void driveWithOutEncoders()
     {
+
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+    }
+
+    void attachmentsWithOutEncoders()
+    {
+        if(pulleyMotor != null)
+        {
+            pulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+
+        if(outputMotor != null)
+        {
+            outputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+
+        if (intakeMotor != null)
+        {
+            intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
 
     }
 
@@ -75,9 +137,41 @@ public class Definitions
         //pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    void driveToPosition()
+    {
+        leftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    void attachmentsWithEncoders()
+    {
+        if(pulleyMotor != null)
+        {
+            pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+        if (intakeMotor != null)
+        {
+            intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+        if(outputMotor != null)
+        {
+            outputMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+    }
+
     public int inchesToTicks(double inches)
     {
-        return (int) ((1120 / (Math.PI * 4)) * inches);
+        return (int) ((TICKSPERREV20 * TICKCORRECTION / (Math.PI * WHEELSIZE)) * inches);
     }
 
     //This is used to move a specified number of inches in a gived direction
@@ -111,7 +205,7 @@ public class Definitions
 
     public void moveInches(double inches, double power)
     {
-        resetEncoders();
+        driveToPosition();
         leftBackMotor.setTargetPosition(inchesToTicks(inches));
         leftBackMotor.setPower(power);
         rightBackMotor.setTargetPosition(inchesToTicks(inches));
@@ -129,11 +223,34 @@ public class Definitions
         rightFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+        driveWithEncoders();
+//        leftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        rightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+
+//    void driveTo(int positionLB, int positionLF, int positionRB, int positionRF)
+//    {
+//        leftBackMotor.setTargetPosition(positionLB);
+//        leftFrontMotor.setTargetPosition(positionLF);
+//        rightBackMotor.setTargetPosition(positionRB);
+//        rightFrontMotor.setTargetPosition(positionRF);
+//
+//        leftBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        rightBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//    }
+
+    void setDrivePower (double power)
+    {
+        leftBackMotor.setPower(power);
+        leftFrontMotor.setPower(power);
+        rightBackMotor.setPower(power);
+        rightFrontMotor.setPower(power);
     }
 
     void setPower(double power)

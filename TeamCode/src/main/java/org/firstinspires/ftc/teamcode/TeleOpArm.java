@@ -2,10 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="Teleop")
+@TeleOp(name="TeleopArm")
 public class TeleOpArm extends OpMode
 {
     Definitions robot = new Definitions();
@@ -16,8 +14,8 @@ public class TeleOpArm extends OpMode
     public void init()
     {
         robot.robotHardwareMapInit(hardwareMap);
-        robot.leftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.runWithOutEncoders();
+        //robot.leftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.driveWithOutEncoders();
         //robot.pulleyMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
@@ -36,7 +34,7 @@ public class TeleOpArm extends OpMode
         }
 
 
-        telemetry.addData("Left Back", robot.leftBackMotor.getCurrentPosition());
+        //telemetry.addData("Left Back", robot.leftBackMotor.getCurrentPosition());
         telemetry.addData("Left Joystick", gamepad1.left_stick_y);
         telemetry.addData("Output Servo", robot.outputServo.getPosition());
         //telemetry.addData("cLiftServo: ", robot.cLiftServo.getPosition());
